@@ -1,0 +1,50 @@
+﻿<ul class="list-unstyled">
+    @foreach (var product in products)
+            {
+                <li class="media my-3">
+                    <div class="media-img-wrapper mr-2" style="height:200px; width:20px; text-align:center">
+                        <a href="/product/@product.Id">
+                            <img class="media-img" src="@product.Image" alt="@product.Title" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <a href="/product/@product.Id">
+                            <h4 class="mb-0">@product.Title</h4>
+                        </a>
+                        <p>@product.Description</p>
+                        @if(product.OriginalPrice > product.Price)
+                         {
+                            <h6 class="text-muted original-price" style="text-decoration:line-through">$@product.OriginalPrice</h6>
+                         }
+                         <h5 class="price" style="color:green">$@product.Price</h5>
+                    </div>
+                </li>
+            }
+</ul>
+
+@code {
+    List<Product> products = new List<Product>
+    {
+        new Product
+        {
+            Id =1,
+            CategoryId = 1,
+            Title = "This is Test",
+            Description="Test products and test description",
+            Image = "",
+            Price = 9.99m,
+            OriginalPrice = 19.99m,
+        },
+        new Product
+        {
+            Id = 7,
+            CategoryId = 3,
+            Title = "This is Anothe test",
+            Description="Test Another products and test another products  description",
+            Image = "",
+            Price = 8.99m,
+            OriginalPrice = 28.99m,
+        }
+    };
+
+}
